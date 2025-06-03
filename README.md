@@ -1,50 +1,83 @@
-# Welcome to your Expo app 👋
+# Medidor de Altura - App con Expo y Sensores
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Esta aplicación móvil desarrollada con **React Native + Expo** permite registrar datos del acelerómetro para calcular una **altura estimada** en base al movimiento del dispositivo. La app guía al usuario mediante comandos de voz y muestra una gráfica del registro de aceleración.
 
-## Get started
+## 🧠 Descripción
 
-1. Install dependencies
+La app cuenta con dos pantallas principales:
 
+- **Home**: muestra en tiempo real el eje `y` del acelerómetro y permite iniciar la medición.
+- **Altura**: recibe los datos recolectados durante 5 segundos y calcula una altura estimada utilizando la fórmula de caída libre.
+
+La medición se guía con comandos hablados utilizando `expo-speech` y se visualiza gráficamente con `react-native-chart-kit`.
+
+## 🚀 Funcionalidades
+
+- Acceso al **sensor de acelerómetro**.
+- **Reconocimiento de movimiento** y registro durante 5 segundos.
+- Cálculo estimado de altura usando la fórmula física:  
+  \[ h = \frac{1}{2} \cdot g \cdot t^2 \]
+- Guía por **voz en español** con tiempos de espera.
+- Visualización de resultados con **gráfico interactivo**.
+- Navegación simple entre pantallas con `expo-router`.
+
+## 🛠️ Tecnologías
+
+- [Expo](https://expo.dev/)
+- [React Native](https://reactnative.dev/)
+- [expo-sensors](https://docs.expo.dev/versions/latest/sdk/sensors/)
+- [expo-speech](https://docs.expo.dev/versions/latest/sdk/speech/)
+- [react-native-chart-kit](https://github.com/indiespirit/react-native-chart-kit)
+- [expo-router](https://expo.github.io/router/)
+
+## 📲 Instalación
+
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/altura-app.git
+   cd altura-app
+   ```
+
+2. Instala las dependencias:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. Inicia el proyecto con Expo:
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## 📋 Estructura de navegación
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```jsx
+<Stack>
+  <Stack.Screen name="index" options={{ title: "Home" }} />
+  <Stack.Screen name="altura" options={{ title: "Altura" }} />
+</Stack>
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 📷 Capturas de pantalla (opcional)
 
-## Learn more
+Agrega aquí capturas si deseas mostrar cómo luce la app.
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 📐 Cálculo de altura
 
-## Join the community
+Se utiliza la fórmula física de caída libre:
+```js
+const h = (1 / 2) * 9.81 * dt * dt;
+```
+Donde `dt` es el tiempo transcurrido entre dos eventos detectados en el eje `y`.
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## ⚠️ Notas
+
+- Esta app es experimental y depende de la sensibilidad del acelerómetro del dispositivo.
+- Los valores de altura pueden variar significativamente si el dispositivo no se mantiene estable.
+
+## 🧑‍💻 Autor
+
+Ferba - Proyecto de ejemplo con sensores en Expo
